@@ -78,7 +78,7 @@ static ssize_t episode_direct_write(struct file *filp, const char __user *buf, s
         if(ret >0){
         ti = (struct timeIndex *)kmalloc(sizeof(struct timeIndex),GFP_KERNEL);//需要安全的申请空间       
                 printk("[episode_direct_write()]ret=%d ppos=%d",ret,*ppos);
-                ti->offset = *ppos;
+                ti->offset = inode->i_size;
                 ti->recLen = len;
                 ti->timestamp = getCurrentTime();
                 printk("[episode_direct_write()] len=%d, timestamp=%u",len,ti->timestamp);
